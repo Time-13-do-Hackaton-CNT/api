@@ -5,6 +5,9 @@
   "repository": "https://github.com/Time-13-do-Hackaton-CNT/api.git",
   "author": "Caique Pimenta <cpimenta.apsoftware@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev":"ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+  },
   "devDependencies": {
     "@types/express": "^4.17.8",
     "git-commit-msg-linter": "^3.0.0",

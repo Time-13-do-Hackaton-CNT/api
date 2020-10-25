@@ -4,12 +4,12 @@ import ColetaView from './ColetaView';
 export default {
   render(rota: Rota) {
     return {
-      rot_id_rota: rota.rot_id_rota,
-      rot_ds_rota: rota.rot_ds_rota,
-      rot_vl_latitude_origem: rota.rot_vl_latitude_origem,      
-      rot_vl_longitude_origem: rota.rot_vl_longitude_origem,
-      rot_vl_latitude_destino: rota.rot_vl_latitude_destino,      
-      rot_vl_longitude_destino: rota.rot_vl_longitude_destino,
+      id: rota.rot_id_rota,
+      rota: rota.rot_ds_rota,
+      latitude_origem: rota.rot_vl_latitude_origem,      
+      longitude_origem: rota.rot_vl_longitude_origem,
+      latitude_destino: rota.rot_vl_latitude_destino,      
+      longitude_destino: rota.rot_vl_longitude_destino,
       coletas: ColetaView.renderMany(rota.coletas)
     };
   },

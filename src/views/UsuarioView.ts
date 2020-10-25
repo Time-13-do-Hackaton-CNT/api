@@ -4,8 +4,8 @@ import ColetaView from './ColetaView';
 export default {
   render(usuario: Usuario) {
     return {
-      usu_id_usuario: usuario.usu_id_usuario,
-      usu_ds_login: usuario.usu_ds_login,      
+      id: usuario.usu_id_usuario,
+      login: usuario.usu_ds_login,      
       coletas: ColetaView.renderMany(usuario.coletas)
     };
   },

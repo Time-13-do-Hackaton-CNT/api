@@ -3,7 +3,7 @@ import FotoDado from '../models/FotoDado';
 export default {
   render(fotoDado: FotoDado) {
     return {
-      fod_id_foto_dado: fotoDado.fod_id_foto_dado,
+      id: fotoDado.fod_id_foto_dado,
       url: `http://localhost:3333/uploads/fotos/${fotoDado.fod_ds_diretorio}`,            
     };
   },

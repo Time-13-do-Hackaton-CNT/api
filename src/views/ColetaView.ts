@@ -4,9 +4,9 @@ import DadoColetaView from './DadoColetaView';
 export default {
   render(coleta: Coleta) {
     return {
-      col_id_coleta: coleta.col_id_coleta,
-      col_ds_rodovia: coleta.col_ds_rodovia,
-      col_nu_trecho: coleta.col_nu_trecho,      
+      id: coleta.col_id_coleta,
+      rodovia: coleta.col_ds_rodovia,
+      trecho: coleta.col_nu_trecho,      
       dadosColeta: DadoColetaView.renderMany(coleta.DadosColeta)
     };
   },

@@ -1,4 +1,5 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn} from 'typeorm';
+import Coleta from './Coleta';
 
 @Entity('ROT_rota')
 export default class Rota {
@@ -19,4 +20,10 @@ export default class Rota {
 
   @Column()
   rot_vl_longitude_destino: number;   
+
+  @OneToMany(() => Coleta, coleta => coleta.col_id_rota, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({name: 'col_id_rota'})
+  coletas: Coleta[];
 }

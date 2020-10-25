@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import Coleta from './Coleta';
+import FotoDado from './FotoDado';
 import VariavelPesquisa from './VariavelPesquisa';
 
 @Entity('DAC_dado_coleta')
@@ -20,4 +21,10 @@ export default class DadoColeta {
 
   @Column()
   dac_vl_longitude: number;
+
+  @OneToMany(() => FotoDado, fotoDado => fotoDado.fod_id_dado_coleta, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({name: 'fod_id_dado_coleta'})
+  FotosDado: FotoDado[];
 }

@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import Usuario from './Usuario';
 import Pesquisa from './Pesquisa';
 import Rota from './Rota';
+import DadoColeta from './DadoColeta';
 
 @Entity('COL_coleta')
 export default class Coleta {
@@ -25,4 +26,10 @@ export default class Coleta {
 
   @Column()
   col_ds_rodovia: string;
+
+  @OneToMany(() => DadoColeta, dadoColeta => dadoColeta.dac_id_coleta, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({name: 'dac_id_coleta'})
+  DadosColeta: DadoColeta[];
 }

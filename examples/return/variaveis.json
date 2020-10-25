@@ -1,0 +1,61 @@
+[
+  {
+    "vap_id_variavel": 1,
+    "vap_ds_variavel": "Geometria da Via",
+    "variaveis_micro": [
+      {
+        "vap_id_variavel": 11,
+        "vap_ds_variavel": "Tipo de rodovia",
+        "variaveis_micro": [
+          {
+            "vap_id_variavel": 101,
+            "vap_ds_variavel": "Pista dupla",
+            "variaveis_micro": []
+          },
+          {
+            "vap_id_variavel": 102,
+            "vap_ds_variavel": "Pista simples"
+          },
+          {
+            "vap_id_variavel": 103,
+            "vap_ds_variavel": "Mão única"
+          }
+        ]
+      },
+      {
+        "vap_id_variavel": 12,
+        "vap_ds_variavel": "Perfil da rodovia",
+        "variaveis_micro": [
+          {
+            "vap_id_variavel": 104,
+            "vap_ds_variavel": "Plano",
+            "variaveis_micro": []
+          },
+          {
+            "vap_id_variavel": 105,
+            "vap_ds_variavel": "Ondulado"
+          },
+          {
+            "vap_id_variavel": 106,
+            "vap_ds_variavel": "Montanhoso"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "vap_id_variavel": 2,
+    "vap_ds_variavel": "Pavimento",
+    "variaveis_micro": []
+  },
+  {
+    "vap_id_variavel": 3,
+    "vap_ds_variavel": "Sinalização",
+    "variaveis_micro": []
+  },
+  {
+    "vap_id_variavel": 4,
+    "vap_ds_variavel": "Infraestrutura de Apoio",
+    "variaveis_micro": []
+  }
+]

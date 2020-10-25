@@ -1,0 +1,42 @@
+[
+    {
+      "vap_id_variavel" : 5,
+      "vap_ds_variavel" : "Sem Interrupção"
+    },
+    {
+      "vap_id_variavel" : 6,
+      "vap_ds_variavel" : "Almoço"
+    },
+    {
+      "vap_id_variavel" : 7,
+      "vap_ds_variavel" : "Fim do Dia"
+    },
+    {
+      "vap_id_variavel" : 8,
+      "vap_ds_variavel" : "Deslocamento"
+    },
+    {
+      "vap_id_variavel" : 9,
+      "vap_ds_variavel" : "Desvio sinalizado"
+    },
+    {
+      "vap_id_variavel" : 10,
+      "vap_ds_variavel" : "Desvio não sinalizado"
+    },
+    {
+      "vap_id_variavel" : 11,
+      "vap_ds_variavel" : "Chuva"
+    },
+    {
+      "vap_id_variavel" : 12,
+      "vap_ds_variavel" : "Neblina"
+    },
+    {
+      "vap_id_variavel" : 13,
+      "vap_ds_variavel" : "Mudança do tipo de pavimento"
+    },
+    {
+      "vap_id_variavel" : 14,
+      "vap_ds_variavel" : "Outro"
+    }
+]  

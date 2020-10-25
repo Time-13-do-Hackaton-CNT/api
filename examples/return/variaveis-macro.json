@@ -1,0 +1,18 @@
+[
+    {
+      "vap_id_variavel" : 1,
+      "vap_ds_variavel" : "Geometria da Via"
+    },
+    {
+      "vap_id_variavel" : 2,
+      "vap_ds_variavel" : "Pavimento"
+    },
+    {
+      "vap_id_variavel" : 3,
+      "vap_ds_variavel" : "Sinalização"
+    },
+    {
+      "vap_id_variavel" : 4,
+      "vap_ds_variavel" : "Infraestrutura de Apoio"
+    }
+]  

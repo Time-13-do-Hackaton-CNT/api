@@ -3,23 +3,24 @@ import Coleta from './Coleta';
 
 @Entity('ROT_rota')
 export default class Rota {
-  @PrimaryGeneratedColumn('increment')
-  rot_id_rota: number;
+  @PrimaryGeneratedColumn('increment')  
+  @Column({name:'rot_id_rota', primary:true})
+  id: number;  
+  
+  @Column({name:'rot_ds_rota'})
+  descricao: string;   
 
-  @Column()
-  rot_ds_rota: string;   
-
-  @Column()
-  rot_vl_latitude_origem: number;   
-
-  @Column()
-  rot_vl_longitude_origem: number;   
-
-  @Column()
-  rot_vl_latitude_destino: number;   
-
-  @Column()
-  rot_vl_longitude_destino: number;   
+  @Column({name:'rot_vl_latitude_origem'})
+  latitude_origem: number;   
+  
+  @Column({name:'rot_vl_longitude_origem'})
+  longitude_origem: number;   
+  
+  @Column({name:'rot_vl_latitude_destino'})
+  latitude_destino: number;   
+  
+  @Column({name:'rot_vl_longitude_destino'})
+  longitude_destino: number;   
 
   @OneToMany(() => Coleta, coleta => coleta.col_id_rota, {
     cascade: ['insert', 'update']

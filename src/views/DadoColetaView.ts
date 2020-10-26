@@ -4,10 +4,10 @@ import FotoDadoView from './FotoDadoView';
 export default {
   render(dadoColeta: DadoColeta) {
     return {
-      id: dadoColeta.dac_id_dado_coleta,
+      id: dadoColeta.id,
       latitude: dadoColeta.dac_vl_latitude,
       longitude: dadoColeta.dac_vl_longitude,      
-      fotosDado: FotoDadoView.renderMany(dadoColeta.FotosDado)
+      fotosDado: FotoDadoView.renderMany(dadoColeta.fotosDado)
     };
   },
 

@@ -23,13 +23,13 @@ export class criarDadoColeta1603650299220 implements MigrationInterface {
             type: 'integer',
           },
           {
-            name: 'dac_id_latitude',
+            name: 'dac_vl_latitude',
             type: 'float',
             scale: 10,
             precision: 2
           },
           {
-            name: 'dac_id_longitude',
+            name: 'dac_vl_longitude',
             type: 'float',
             scale: 10,
             precision: 2

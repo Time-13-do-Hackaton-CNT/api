@@ -22,7 +22,7 @@ export default class Rota {
   @Column({name:'rot_vl_longitude_destino'})
   longitude_destino: number;   
 
-  @OneToMany(() => Coleta, coleta => coleta.col_id_rota, {
+  @OneToMany(() => Coleta, coleta => coleta.id, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'col_id_rota'})

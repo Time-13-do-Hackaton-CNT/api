@@ -19,7 +19,7 @@ export default class VariavelPesquisa {
   @Column()
   vap_tp_variavel: string;
 
-  @OneToMany(() => DadoColeta, dadoColeta => dadoColeta.dac_id_variavel_pesquisa, {
+  @OneToMany(() => DadoColeta, dadoColeta => dadoColeta.id, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'dac_id_variavel_pesquisa'})

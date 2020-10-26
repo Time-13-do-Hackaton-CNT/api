@@ -6,25 +6,28 @@ import VariavelPesquisa from './VariavelPesquisa';
 @Entity('DAC_dado_coleta')
 export default class DadoColeta {
   @PrimaryGeneratedColumn('increment')
-  dac_id_dado_coleta: number;
+  @Column({name:'dac_id_dado_coleta', primary:true})
+  id: number;
 
-  @ManyToOne(() => Coleta, coleta => coleta.col_id_coleta)
+  @ManyToOne(() => Coleta, coleta => coleta.id)
   @JoinColumn({ name: 'dac_id_coleta' })
-  dac_id_coleta: Coleta;
+  // @Column({name:'dac_id_coleta'})
+  coleta: Coleta;
 
   @ManyToOne(() => VariavelPesquisa, variavelPesquisa => variavelPesquisa.vap_id_variavel_pesquisa)
   @JoinColumn({ name: 'dac_id_variavel_pesquisa' })
-  dac_id_variavel_pesquisa: VariavelPesquisa; 
+  // @Column({name:'dac_id_variavel_pesquisa'})
+  variavel_pesquisa: VariavelPesquisa; 
 
-  @Column()
+  @Column({name:'dac_vl_latitude'})
   dac_vl_latitude: number;
 
-  @Column()
+  @Column({name:'dac_vl_longitude'})
   dac_vl_longitude: number;
 
   @OneToMany(() => FotoDado, fotoDado => fotoDado.fod_id_dado_coleta, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'fod_id_dado_coleta'})
-  FotosDado: FotoDado[];
+  fotosDado: FotoDado[];
 }

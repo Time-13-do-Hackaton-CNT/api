@@ -6,7 +6,7 @@ export default class FotoDado {
   @PrimaryGeneratedColumn('increment')
   fod_id_foto_dado: number;
 
-  @ManyToOne(() => DadoColeta, dadoColeta => dadoColeta.dac_id_dado_coleta)
+  @ManyToOne(() => DadoColeta, dadoColeta => dadoColeta.id)
   @JoinColumn({ name: 'fod_id_dado_coleta' })
   fod_id_dado_coleta: DadoColeta;  
 

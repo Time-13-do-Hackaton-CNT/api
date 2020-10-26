@@ -7,29 +7,33 @@ import DadoColeta from './DadoColeta';
 @Entity('COL_coleta')
 export default class Coleta {
   @PrimaryGeneratedColumn('increment')
-  col_id_coleta: number;
+  @Column({name:'col_id_coleta', primary:true})
+  id: number;
 
-  @ManyToOne(() => Usuario, usuario => usuario.usu_id_usuario)
+  @ManyToOne(() => Usuario, usuario => usuario.id)
   @JoinColumn({ name: 'col_id_usuario' })
-  col_id_usuario: Usuario;
+  // @Column({name:'col_id_usuario'})
+  usuario: Usuario;
 
-  @ManyToOne(() => Rota, rota => rota.rot_id_rota)
+  @ManyToOne(() => Rota, rota => rota.id)
   @JoinColumn({ name: 'col_id_rota' })
-  col_id_rota: Rota;
+  // @Column({name:'col_id_rota'})
+  rota: Rota;
 
   @ManyToOne(() => Pesquisa, pesquisa => pesquisa.id)
   @JoinColumn({ name: 'col_id_pesquisa' })
-  col_id_pesquisa: Pesquisa;  
+  // @Column({name:'col_id_pesquisa'})
+  pesquisa: Pesquisa;  
 
-  @Column()
-  col_nu_trecho: number;
+  @Column({name:'col_nu_trecho'})
+  trecho: number;
 
-  @Column()
-  col_ds_rodovia: string;
+  @Column({name:'col_ds_rodovia'})
+  rodovia: string;
 
-  @OneToMany(() => DadoColeta, dadoColeta => dadoColeta.dac_id_coleta, {
+  @OneToMany(() => DadoColeta, dadoColeta => dadoColeta.id, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'dac_id_coleta'})
-  DadosColeta: DadoColeta[];
+  dadosColeta: DadoColeta[];
 }

@@ -1,13 +1,19 @@
 import Coleta from '../models/Coleta';
 import DadoColetaView from './DadoColetaView';
+import PesquisaView from './PesquisaView';
+import RotaView from './RotaView';
+import UsuarioView from './UsuarioView';
 
 export default {
   render(coleta: Coleta) {
     return {
-      id: coleta.col_id_coleta,
-      rodovia: coleta.col_ds_rodovia,
-      trecho: coleta.col_nu_trecho,      
-      dadosColeta: DadoColetaView.renderMany(coleta.DadosColeta)
+      id: coleta.id,
+      usuario: coleta.usuario,
+      pesquisa: coleta.pesquisa,
+      rota: coleta.rota,
+      rodovia: coleta.rodovia,
+      trecho: coleta.trecho,      
+      dadosColeta: DadoColetaView.renderMany(coleta.dadosColeta)      
     };
   },
 

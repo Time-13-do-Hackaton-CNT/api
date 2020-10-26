@@ -13,7 +13,7 @@ export default class Pesquisa {
   @Column({name:'pes_nu_ano'})
   ano: number;   
 
-  @OneToMany(() => Coleta, coleta => coleta.col_id_pesquisa, {
+  @OneToMany(() => Coleta, coleta => coleta.id, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'col_id_pesquisa'})

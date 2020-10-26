@@ -4,10 +4,11 @@ import Coleta from './Coleta';
 @Entity('USU_usuario')
 export default class Usuario {
   @PrimaryGeneratedColumn('increment')
-  usu_id_usuario: number;
+  @Column({name:'usu_id_usuario', primary:true})
+  id: number;
 
-  @Column()
-  usu_ds_login: string;   
+  @Column({name:'usu_ds_login'})
+  login: string;   
 
   @OneToMany(() => Coleta, coleta => coleta.col_id_usuario, {
     cascade: ['insert', 'update']

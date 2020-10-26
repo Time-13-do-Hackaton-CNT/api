@@ -11,7 +11,7 @@ export default {
       ano      
     } = requisicao.body;
   
-    const rotasRepository = getRepository(Pesquisa);
+    const pesquisasRepository = getRepository(Pesquisa);
 
     const data = {      
       descricao,      
@@ -29,9 +29,9 @@ export default {
 
     const finalData = schema.cast(data) as Pesquisa;
 
-    const pesquisa = rotasRepository.create(finalData);
+    const pesquisa = pesquisasRepository.create(finalData);
   
-    await rotasRepository.save(pesquisa);
+    await pesquisasRepository.save(pesquisa);
   
     return resposta.status(201).json(pesquisa);
   },

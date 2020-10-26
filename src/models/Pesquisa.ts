@@ -3,14 +3,14 @@ import Coleta from './Coleta';
 
 @Entity('PES_pesquisa')
 export default class Pesquisa {
-  @PrimaryGeneratedColumn('increment')
-  @Column('pes_id_pesquisa')
+  @PrimaryGeneratedColumn('increment')  
+  @Column({name:'pes_id_pesquisa', primary:true})
   id: number;
 
-  @Column('pes_ds_pesquisa')
+  @Column({name:'pes_ds_pesquisa'})
   descricao: string;   
-
-  @Column('pes_nu_ano')
+  
+  @Column({name:'pes_nu_ano'})
   ano: number;   
 
   @OneToMany(() => Coleta, coleta => coleta.col_id_pesquisa, {

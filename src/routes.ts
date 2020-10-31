@@ -33,11 +33,11 @@ routes.post('/variavel', VariavelPesquisaController.create);
 routes.get('/variaveis', VariavelPesquisaController.index);
 routes.get('/variavel/:id', VariavelPesquisaController.show);
 
-routes.post('/dado', DadoColetaController.create);
+routes.post('/dado', upload.array('arquivo_foto'), DadoColetaController.create);
 routes.get('/dados', DadoColetaController.index);
 routes.get('/dado/:id', DadoColetaController.show);
 
-routes.post('/foto', FotoDadoController.create);
+routes.post('/foto', upload.single('arquivo_foto'), FotoDadoController.create);
 routes.get('/fotos', FotoDadoController.index);
 routes.get('/foto/:id', FotoDadoController.show);
 

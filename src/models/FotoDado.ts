@@ -1,15 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import DadoColeta from './DadoColeta';
 
-@Entity('DAC_dado_coleta')
+@Entity('FOD_foto_dado')
 export default class FotoDado {
   @PrimaryGeneratedColumn('increment')
-  fod_id_foto_dado: number;
+  @Column({name: 'fod_id_foto_dado', primary: true})
+  id: number;
 
   @ManyToOne(() => DadoColeta, dadoColeta => dadoColeta.id)
   @JoinColumn({ name: 'fod_id_dado_coleta' })
-  fod_id_dado_coleta: DadoColeta;  
+  dado_coleta: DadoColeta;  
 
-  @Column()
-  fod_ds_diretorio: string;
+  @Column({name:'fod_ds_diretorio'})
+  diretorio: string;
 }

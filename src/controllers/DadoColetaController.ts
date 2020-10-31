@@ -3,55 +3,84 @@ import { getRepository } from 'typeorm';
 import DadoColeta from '../models/DadoColeta';
 import DadoColetaView from '../views/DadoColetaView'
 import * as Yup from 'yup';
+import VariavelPesquisa from '../models/VariavelPesquisa';
+import Coleta from '../models/Coleta';
 
 export default {
   async create(requisicao: Request, resposta: Response){    
     const {      
-      login    
+      coleta,
+      variavel_pesquisa,
+      latitude,
+      longitude,
+      fotos_dado
     } = requisicao.body;
-  
-    const dadocoletasRepository = getRepository(DadoColeta);
 
     const data = {      
-      login  
+      coleta,
+      variavel_pesquisa,
+      latitude,
+      longitude,
+      fotos_dado
     };
 
     const schema = Yup.object().shape({
-      login: Yup.string().required('Login é um campo obrigatório').max(100)
+      coleta: Yup.number().required('Coleta é uma informação obrigatória'),
+      variavel_pesquisa: Yup.number().required('Variável de Pesquisa é uma informação obrigatória'),
+      latitude: Yup.number().required('Latitude é uma informação obrigatória'),
+      longitude: Yup.number().required('Longitude é uma informação obrigatória'),
+      fotos_dado: Yup.array().meta({
+          diretorio: Yup.string()
+      })
     });    
 
     await schema.validate(data, {
       abortEarly: false,      
     });
 
-    // const finalData = schema.cast(data) as DadoColeta;
+    const castData = schema.cast(data);
 
-    // const dadocoleta = dadocoletasRepository.create(finalData);
+    const coletasRepository = getRepository(Coleta);
+    const loColeta = await coletasRepository.findOneOrFail(castData?.coleta);
+
+    const variaveisPesquisaRepository = getRepository(VariavelPesquisa);
+    const loVariavelPesquisa = await variaveisPesquisaRepository.findOneOrFail(castData?.variavel_pesquisa);
+
+    const repositoryData = {
+      coleta: loColeta,
+      variavel_pesquisa: loVariavelPesquisa,
+      latitude: castData?.latitude,
+      longitude: castData?.longitude
+    };
+
+    const dadosColetaRepository = getRepository(DadoColeta);
+
+    const dadoColeta = dadosColetaRepository.create(repositoryData);
   
-    // await dadocoletasRepository.save(dadocoleta);
+    await dadosColetaRepository.save(dadoColeta);
   
-    // return resposta.status(201).json(dadocoleta);
+    return resposta.status(201).json(dadoColeta);
   },
 
   async index(requisicao: Request, resposta: Response){
-     const dadocoletasRepository = getRepository(DadoColeta);
+     const dadosColetaRepository = getRepository(DadoColeta);
 
-     const dadocoletas = await dadocoletasRepository.find({
-       relations: ['coletas']
+     const dadosColeta = await dadosColetaRepository.find({
+       relations: ['fotos_dado']
      });
 
-     return resposta.json(DadoColetaView.renderMany(dadocoletas));    
+     return resposta.json(DadoColetaView.renderMany(dadosColeta));    
   },
 
   async show(requisicao: Request, resposta: Response){
     const { id } = requisicao.params;
 
-    const dadocoletasRepository = getRepository(DadoColeta);
+    const dadosColetaRepository = getRepository(DadoColeta);
 
-    const dadocoleta = await dadocoletasRepository.findOneOrFail(id, {
-      relations: ['coletas']
+    const dadoColeta = await dadosColetaRepository.findOneOrFail(id, {
+      relations: ['fotos_dado']
     });
 
-    return resposta.json(DadoColetaView.render(dadocoleta));
+    return resposta.json(DadoColetaView.render(dadoColeta));
   },
 };

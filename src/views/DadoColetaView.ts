@@ -5,9 +5,9 @@ export default {
   render(dadoColeta: DadoColeta) {
     return {
       id: dadoColeta.id,
-      latitude: dadoColeta.dac_vl_latitude,
-      longitude: dadoColeta.dac_vl_longitude,      
-      fotosDado: FotoDadoView.renderMany(dadoColeta.fotosDado)
+      latitude: dadoColeta.latitude,
+      longitude: dadoColeta.longitude,      
+      fotos_dado: FotoDadoView.renderMany(dadoColeta.fotos_dado)
     };
   },
 

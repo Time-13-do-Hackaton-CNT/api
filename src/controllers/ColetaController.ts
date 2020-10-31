@@ -16,8 +16,6 @@ export default {
       trecho,
       rodovia
     } = requisicao.body;
-  
-    const coletasRepository = getRepository(Coleta);
 
     const data = {      
       usuario,
@@ -28,10 +26,10 @@ export default {
     };
 
     const schema = Yup.object().shape({
-      usuario: Yup.number().required('Usuario é um campo obrigatório'),
-      rota: Yup.number().required('Rota é um campo obrigatório'),
-      pesquisa: Yup.number().required('Pesquisa é um campo obrigatório'),
-      trecho: Yup.number().required('Trecho é um campo obrigatório'),
+      usuario: Yup.number().required('Usuario é uma informação obrigatória'),
+      rota: Yup.number().required('Rota é uma informação obrigatória'),
+      pesquisa: Yup.number().required('Pesquisa é uma informação obrigatória'),
+      trecho: Yup.number().required('Trecho é uma informação obrigatória'),
       rodovia: Yup.string(),
     });
 
@@ -39,26 +37,27 @@ export default {
       abortEarly: false,      
     });
 
+    const castData = schema.cast(data);
+
     const usuariosRepository = getRepository(Usuario);
-    const loUsuario = await usuariosRepository.findOneOrFail(usuario);
+    const loUsuario = await usuariosRepository.findOneOrFail(castData?.usuario);
 
     const rotasRepository = getRepository(Rota);
-    const loRota = await rotasRepository.findOneOrFail(rota);
+    const loRota = await rotasRepository.findOneOrFail(castData?.rota);
 
     const pesquisasRepository = getRepository(Pesquisa);
-    const loPesquisa = await pesquisasRepository.findOneOrFail(pesquisa);
+    const loPesquisa = await pesquisasRepository.findOneOrFail(castData?.pesquisa);
 
-    const finalData = {      
+    const repositoryData = {      
       usuario: loUsuario,
       rota: loRota, 
       pesquisa: loPesquisa,
-      trecho,
-      rodovia
+      trecho: castData?.trecho,
+      rodovia: castData?.rodovia
     };
 
-    // const finalData = schema.cast(data) as Coleta;
-
-    const coleta = coletasRepository.create(finalData);
+    const coletasRepository = getRepository(Coleta);
+    const coleta = coletasRepository.create(repositoryData);
   
     await coletasRepository.save(coleta);
   
@@ -69,7 +68,7 @@ export default {
      const coletasRepository = getRepository(Coleta);
 
      const coletas = await coletasRepository.find({
-       relations: ['dadosColeta']
+       relations: ['dados_coleta']
      });
 
      return resposta.json(ColetaView.renderMany(coletas));    
@@ -81,7 +80,7 @@ export default {
     const coletasRepository = getRepository(Coleta);
 
     const coleta = await coletasRepository.findOneOrFail(id, {
-      relations: ['dadosColeta']
+      relations: ['dados_coleta']
     });
 
     return resposta.json(ColetaView.render(coleta));

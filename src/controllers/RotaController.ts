@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import { getRepository } from 'typeorm';
 import Rota from '../models/Rota';
-import RotaView from '../views/RotaView'
+import RotaView from '../views/RotaView';
 import * as Yup from 'yup';
 
 export default {

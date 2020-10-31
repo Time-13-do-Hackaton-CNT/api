@@ -10,7 +10,7 @@ export default class Usuario {
   @Column({name:'usu_ds_login'})
   login: string;   
 
-  @OneToMany(() => Coleta, coleta => coleta.id, {
+  @OneToMany(() => Coleta, coleta => coleta.usuario, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'col_id_usuario'})

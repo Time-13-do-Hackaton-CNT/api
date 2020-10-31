@@ -13,7 +13,7 @@ export default {
       rota: coleta.rota,
       rodovia: coleta.rodovia,
       trecho: coleta.trecho,      
-      dadosColeta: DadoColetaView.renderMany(coleta.dadosColeta)      
+      dados_coleta: DadoColetaView.renderMany(coleta.dados_coleta)      
     };
   },
 

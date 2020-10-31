@@ -11,23 +11,21 @@ export default class DadoColeta {
 
   @ManyToOne(() => Coleta, coleta => coleta.id)
   @JoinColumn({ name: 'dac_id_coleta' })
-  // @Column({name:'dac_id_coleta'})
   coleta: Coleta;
 
-  @ManyToOne(() => VariavelPesquisa, variavelPesquisa => variavelPesquisa.vap_id_variavel_pesquisa)
+  @ManyToOne(() => VariavelPesquisa, variavelPesquisa => variavelPesquisa.id)
   @JoinColumn({ name: 'dac_id_variavel_pesquisa' })
-  // @Column({name:'dac_id_variavel_pesquisa'})
   variavel_pesquisa: VariavelPesquisa; 
 
   @Column({name:'dac_vl_latitude'})
-  dac_vl_latitude: number;
+  latitude: number;
 
   @Column({name:'dac_vl_longitude'})
-  dac_vl_longitude: number;
+  longitude: number;
 
-  @OneToMany(() => FotoDado, fotoDado => fotoDado.fod_id_dado_coleta, {
+  @OneToMany(() => FotoDado, fotoDado => fotoDado.dado_coleta, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'fod_id_dado_coleta'})
-  fotosDado: FotoDado[];
+  fotos_dado: FotoDado[];
 }

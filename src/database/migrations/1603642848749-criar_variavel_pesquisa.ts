@@ -17,6 +17,7 @@ export class criarVariavelPesquisa1603642848749 implements MigrationInterface {
           {
             name: 'vap_id_variavel_macro',
             type: 'integer',
+            isNullable: true
           },
           {
             name: 'vap_ds_variavel',

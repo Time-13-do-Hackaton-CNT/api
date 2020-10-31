@@ -4,30 +4,31 @@ import DadoColeta from './DadoColeta';
 @Entity('VAP_variavel_pesquisa')
 export default class VariavelPesquisa {
   @PrimaryGeneratedColumn('increment')
-  vap_id_variavel_pesquisa: number;
+  @Column({name:'vap_id_variavel_pesquisa', primary:true})
+  id: number;
 
-  @ManyToOne(() => VariavelPesquisa, variavelPesquisa => variavelPesquisa.vap_id_variavel_pesquisa)
+  @ManyToOne(() => VariavelPesquisa, variavelPesquisa => variavelPesquisa.id)
   @JoinColumn({ name: 'vap_id_variavel_macro' })
-  vap_id_variavel_macro: VariavelPesquisa;
+  variavel_macro: VariavelPesquisa;
 
-  @Column()
-  vap_ds_variavel: string;
+  @Column({name: 'vap_ds_variavel'})
+  descricao: string;
 
-  @Column()
-  vap_st_foto_obrigatoria: boolean;
+  @Column({name: 'vap_st_foto_obrigatoria'})
+  foto_obrigatoria: boolean;
 
-  @Column()
-  vap_tp_variavel: string;
+  @Column({name: 'vap_tp_variavel'})
+  tipo: string;
 
-  @OneToMany(() => DadoColeta, dadoColeta => dadoColeta.id, {
+  @OneToMany(() => DadoColeta, dadoColeta => dadoColeta.variavel_pesquisa, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'dac_id_variavel_pesquisa'})
-  DadosColeta: DadoColeta[];
+  dados_coleta: DadoColeta[];
 
-  @OneToMany(() => VariavelPesquisa, variavelPesquisa => variavelPesquisa.vap_id_variavel_macro, {
+  @OneToMany(() => VariavelPesquisa, variavelPesquisa => variavelPesquisa.variavel_macro, {
     cascade: ['insert', 'update']
   })
   @JoinColumn({name: 'vap_id_variavel_macro'})
-  VariaveisMicro: VariavelPesquisa[];
+  variaveis_micro: VariavelPesquisa[];
 }

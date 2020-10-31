@@ -1,14 +1,17 @@
 import VariavelPesquisa from '../models/VariavelPesquisa';
 import DadoColetaView from './DadoColetaView';
+import VariavelPesquisaView from './VariavelPesquisaView';
 
 export default {
   render(variavelPesquisa: VariavelPesquisa) {
     return {
-      id: variavelPesquisa.vap_id_variavel_pesquisa,
-      descricao: variavelPesquisa.vap_ds_variavel,
-      foto_obrigatoria: variavelPesquisa.vap_st_foto_obrigatoria,      
-      tipo: variavelPesquisa.vap_tp_variavel,            
-      dadosColeta: DadoColetaView.renderMany(variavelPesquisa.DadosColeta)
+      id: variavelPesquisa.id,
+      variavel_macro: variavelPesquisa.variavel_macro,
+      descricao: variavelPesquisa.descricao,
+      foto_obrigatoria: variavelPesquisa.foto_obrigatoria,      
+      tipo: variavelPesquisa.tipo,            
+      dados_coleta: DadoColetaView.renderMany(variavelPesquisa.dados_coleta),
+      variaveis_micro: variavelPesquisa.variaveis_micro
     };
   },
 

@@ -3,44 +3,62 @@ import { getRepository } from 'typeorm';
 import FotoDado from '../models/FotoDado';
 import FotoDadoView from '../views/FotoDadoView'
 import * as Yup from 'yup';
+import DadoColeta from '../models/DadoColeta';
 
 export default {
   async create(requisicao: Request, resposta: Response){    
+
+    //console.log(requisicao);
+
+    //return resposta.status(201).json({message:1});
+
     const {      
-      url    
+      dado_coleta    
     } = requisicao.body;
-  
-    const fotodadosRepository = getRepository(FotoDado);
+
+    const {
+      filename
+    } = requisicao.file;
 
     const data = {      
-      url  
+      dado_coleta,
+      diretorio: filename 
     };
 
     const schema = Yup.object().shape({
-      url: Yup.string().required('Url é um campo obrigatório').max(100)
+      dado_coleta: Yup.number().required('Dado de coleta é uma informação obrigatória'),
+      diretorio: Yup.string().required('Diretório é uma informação obrigatória').max(300)
     });    
 
     await schema.validate(data, {
       abortEarly: false,      
     });
 
-    // const finalData = schema.cast(data) as FotoDado;
+    const castData = schema.cast(data);
 
-    // const fotodado = fotodadosRepository.create(finalData);
+    const dadosColetaRepository = getRepository(DadoColeta);
+    const loDadoColeta = await dadosColetaRepository.findOneOrFail(castData?.dado_coleta);
+
+    const repositoryData = {      
+      dado_coleta: loDadoColeta,
+      diretorio: castData?.diretorio
+    };
+
+    const fotosDadoRepository = getRepository(FotoDado);
+
+    const fotoDado = fotosDadoRepository.create(repositoryData);
   
-    // await fotodadosRepository.save(fotodado);
+    await fotosDadoRepository.save(fotoDado);
   
-    // return resposta.status(201).json(fotodado);
+    return resposta.status(201).json(fotoDado);
   },
 
   async index(requisicao: Request, resposta: Response){
-     const fotodadosRepository = getRepository(FotoDado);
+     const fotosDadoRepository = getRepository(FotoDado);
 
-     const fotodados = await fotodadosRepository.find({
-       relations: ['coletas']
-     });
+     const fotosDado = await fotosDadoRepository.find();
 
-     return resposta.json(FotoDadoView.renderMany(fotodados));    
+     return resposta.json(FotoDadoView.renderMany(fotosDado));    
   },
 
   async show(requisicao: Request, resposta: Response){
@@ -48,9 +66,7 @@ export default {
 
     const fotodadosRepository = getRepository(FotoDado);
 
-    const fotodado = await fotodadosRepository.findOneOrFail(id, {
-      relations: ['coletas']
-    });
+    const fotodado = await fotodadosRepository.findOneOrFail(id);
 
     return resposta.json(FotoDadoView.render(fotodado));
   },

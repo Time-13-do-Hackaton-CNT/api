@@ -4,10 +4,16 @@ O objetivo da criação desta api é o recebimento dos dados coletados pelo app 
 
 #### Tecnologias aplicadas
 
-- NodeJS
-- ExpressJS
+- Node.js
+- Express.js
 - SQLite
 - TypeScript
 - Yup
 - Multer
 - TypeORM
+
+#### Instruções
+
+1. yarn
+2. yarn typeorm migration:run
+3. yarn dev

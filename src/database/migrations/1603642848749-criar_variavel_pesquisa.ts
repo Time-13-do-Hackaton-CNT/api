@@ -1,4 +1,5 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import VariavelPesquisa from "../../models/VariavelPesquisa";
 
 export class criarVariavelPesquisa1603642848749 implements MigrationInterface {
 
@@ -45,6 +46,13 @@ export class criarVariavelPesquisa1603642848749 implements MigrationInterface {
           }
         ]      
       }));  
+
+      const loVariavelPesquisa = queryRunner.manager.create(VariavelPesquisa);
+      loVariavelPesquisa.descricao = 'Geometria da Via';
+      loVariavelPesquisa.foto_obrigatoria = false;
+      loVariavelPesquisa.tipo = 'G';    
+
+      await queryRunner.manager.save(loVariavelPesquisa);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

@@ -15,7 +15,21 @@ export default {
     };
   },
 
+  renderResumido(variavelPesquisa: VariavelPesquisa) {
+    return {
+      id: variavelPesquisa.id,
+      variavel_macro: variavelPesquisa.variavel_macro.id,
+      descricao: variavelPesquisa.descricao,
+      foto_obrigatoria: variavelPesquisa.foto_obrigatoria,      
+      tipo: variavelPesquisa.tipo      
+    };
+  },
+
   renderMany(variaveisPesquisa: VariavelPesquisa[]){
+    return variaveisPesquisa.map(variavelPesquisa => this.render(variavelPesquisa));
+  },
+
+  renderManyResumido(variaveisPesquisa: VariavelPesquisa[]){
     return variaveisPesquisa.map(variavelPesquisa => this.render(variavelPesquisa));
   }
 };

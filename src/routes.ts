@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
+import {query} from 'express-validator';
 
 import uploadConfig from './config/upload';
 import RotaController from './controllers/RotaController';
@@ -30,7 +31,7 @@ routes.get('/coletas', ColetaController.index);
 routes.get('/coleta/:id', ColetaController.show);
 
 routes.post('/variavel', VariavelPesquisaController.create);
-routes.get('/variaveis', VariavelPesquisaController.index);
+routes.get('/variaveis', [query('resumido').isEmpty(),], VariavelPesquisaController.index);
 routes.get('/variavel/:id', VariavelPesquisaController.show);
 
 routes.post('/dado', upload.array('arquivo_foto'), DadoColetaController.create);

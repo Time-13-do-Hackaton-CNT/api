@@ -11,7 +11,7 @@ import errorHandler from './errors/handler';
 
 // var timeout =  require('connect-timeout');
 
-const app = express();
+export const app = express();
 // app.use(timeout('2000s'));
 app.use(cors());
 app.use(express.json());
